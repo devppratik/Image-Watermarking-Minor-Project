@@ -13,7 +13,7 @@ s=str(x0)+','+str(u)
 rsa.encrypt(s)
  
 img=cv2.imread(path,0)
-histogram.get_histogram(path,'histogram/watermark.png')
+# histogram.get_histogram(path,'histogram/watermark.png')
 h,w = np.shape(img)
 
 #generating array of pseudo-random numbers using CLM
@@ -26,11 +26,11 @@ for py in range(0,h):
         img[py][px]=(img[py][px]^x[c])%256
         c=c+1
 cv2.imwrite('images/scrambled_watermark.jpg',img)
-histogram.get_histogram('images/scrambled_watermark.jpg','histogram/scrambled_watermark.jpg')
+# histogram.get_histogram('images/scrambled_watermark.jpg','histogram/scrambled_watermark.jpg')
 #DWT
 hpath=input("Enter the path of the host image: ")
 img = cv2.imread(hpath,0)
-histogram.get_histogram(hpath,'histogram/host_image_watermark.jpg')
+# histogram.get_histogram(hpath,'histogram/host_image_watermark.jpg')
 #Finding components
 Coefficients = pywt.wavedec2(img, wavelet='haar', level=1)
 shape_LL = Coefficients[0].shape #Coefficients[0] is LL
@@ -61,7 +61,7 @@ LLnew=Uc.dot(np.diag(Sw)).dot(Vc)
 Coefficients[0]=LLnew
 i=pywt.waverec2(Coefficients, 'haar')
 cv2.imwrite('images/watermarked_image.jpg',i)
-histogram.get_histogram('images/watermarked_image.jpg','histogram/watermarked_image.jpg')
+# histogram.get_histogram('images/watermarked_image.jpg','histogram/watermarked_image.jpg')
 
 ###################extraction#######################
 
@@ -119,6 +119,4 @@ for py in range(0,h):
         img[py][px]=(img[py][px]^x[c])%256
         c=c+1
 cv2.imwrite('images/unscrambled_watermark.jpg',img)
-histogram.get_histogram('images/unscrambled_watermark.jpg','histogram/unscrambled_watermark.jpg')
-
-
+# histogram.get_histogram('images/unscrambled_watermark.jpg','histogram/unscrambled_watermark.jpg')
